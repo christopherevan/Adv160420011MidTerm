@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/itemHome">
+
+    <fragment
+        android:id="@+id/itemHome"
+        android:name="com.yeet.anmp160420011midterm.view.HomeFragment"
+        android:label="UbayaKuliner"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/actionRestoDetailFromHome"
+            app:destination="@id/restoDetailFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemExplore"
+        android:name="com.yeet.anmp160420011midterm.view.ExploreFragment"
+        android:label="Explore"
+        tools:layout="@layout/fragment_explore">
+        <action
+            android:id="@+id/actionRestoDetailFromExplore"
+            app:destination="@id/restoDetailFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemSaved"
+        android:name="com.yeet.anmp160420011midterm.view.SavedFragment"
+        android:label="Saved"
+        tools:layout="@layout/fragment_saved">
+        <action
+            android:id="@+id/actionRestoDetailFromSaved"
+            app:destination="@id/restoDetailFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemProfile"
+        android:name="com.yeet.anmp160420011midterm.view.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/restoDetailFragment3"
+        android:name="com.yeet.anmp160420011midterm.view.RestoDetailFragment"
+        android:label="Restaurant Detail"
+        tools:layout="@layout/fragment_resto_detail">
+        <action
+            android:id="@+id/actionReviewFromDetail"
+            app:destination="@id/restoReviewFragment" />
+        <action
+            android:id="@+id/actionMenuDetail"
+            app:destination="@id/menuDetailFragment" />
+        <action
+            android:id="@+id/actionCart"
+            app:destination="@id/cartFragment" />
+        <argument
+            android:name="restoDetail"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/restoReviewFragment"
+        android:name="com.yeet.anmp160420011midterm.view.RestoReviewFragment"
+        android:label="Reviews"
+        tools:layout="@layout/fragment_resto_review">
+        <argument
+            android:name="restoId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuDetailFragment"
+        android:name="com.yeet.anmp160420011midterm.view.MenuDetailFragment"
+        android:label="Menu Detail"
+        tools:layout="@layout/fragment_menu_detail">
+        <argument
+            android:name="menuId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.yeet.anmp160420011midterm.view.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart">
+        <argument
+            android:name="restoName"
+            app:argType="string" />
+        <argument
+            android:name="restoId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/actionOrderDetailFromCart"
+            app:destination="@id/orderDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemOrders"
+        android:name="com.yeet.anmp160420011midterm.view.OrdersFragment"
+        android:label="Orders"
+        tools:layout="@layout/fragment_orders">
+        <action
+            android:id="@+id/actionOrderDetailFromOrders"
+            app:destination="@id/orderDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="com.yeet.anmp160420011midterm.view.OrderDetailFragment"
+        android:label="Order Detail"
+        tools:layout="@layout/fragment_order_detail">
+        <argument
+            android:name="orderId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/actionOrdersFromDetail"
+            app:destination="@id/itemOrders" />
+    </fragment>
+</navigation>
