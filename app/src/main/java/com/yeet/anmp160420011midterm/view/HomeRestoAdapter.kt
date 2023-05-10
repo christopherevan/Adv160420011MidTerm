@@ -1,6 +1,7 @@
 package com.yeet.anmp160420011midterm.view
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,7 @@ class HomeRestoAdapter(private val restoList:ArrayList<Resto>)
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: HomeRestoViewHolder, position: Int) {
+        Log.d("aa", restoList.toString())
         val txtName: TextView = holder.view.findViewById(R.id.txtRestoNameHomeHorizontal)
         val txtLocation: TextView = holder.view.findViewById(R.id.txtRestoLocHomeHorizontal)
         val btnDetail: Button = holder.view.findViewById(R.id.btnDetailRestoHomeHorizontal)
