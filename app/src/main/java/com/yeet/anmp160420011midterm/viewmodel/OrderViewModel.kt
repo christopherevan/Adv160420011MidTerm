@@ -21,6 +21,8 @@ class OrderViewModel(application: Application): AndroidViewModel(application) {
     private var queue: RequestQueue? = null
 
     fun fetch() {
+        loadingLD.value = true
+
         queue = Volley.newRequestQueue(getApplication())
         val url = "https://scheday.site/get_user_orders.php"
 
@@ -30,6 +32,7 @@ class OrderViewModel(application: Application): AndroidViewModel(application) {
                 val sType = object : TypeToken<ArrayList<Order>>() { }.type
                 val result = Gson().fromJson<ArrayList<Order>>(it, sType)
                 ordersLD.value = result
+                loadingLD.value = false
 
                 Log.d("showvoley", result.toString())
 

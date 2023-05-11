@@ -21,6 +21,7 @@ class ReviewViewModel(application: Application): AndroidViewModel(application) {
     private var queue: RequestQueue? = null
 
     fun fetch(id: Int) {
+        loadingLD.value = true
         queue = Volley.newRequestQueue(getApplication())
         val url = "https://scheday.site/get_reviews.php?resto_id=$id"
 
@@ -30,6 +31,7 @@ class ReviewViewModel(application: Application): AndroidViewModel(application) {
                 val sType = object : TypeToken<ArrayList<Review>>() { }.type
                 val result = Gson().fromJson<ArrayList<Review>>(it, sType)
                 reviewsLD.value = result
+                loadingLD.value = false
 
                 Log.d("showvoley", result.toString())
 

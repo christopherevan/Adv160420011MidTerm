@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -68,6 +70,11 @@ class HomeFragment : Fragment() {
         rvForYouVertical.layoutManager = lm
         rvForYouVertical.adapter = homeRestoAdapterV
 
+        val btnTopup: Button = view.findViewById(R.id.btnTopupHome)
+        btnTopup.setOnClickListener {
+            Toast.makeText(context, "Feature not yet implemented", Toast.LENGTH_SHORT).show()
+        }
+        
         observe()
     }
 
@@ -76,8 +83,6 @@ class HomeFragment : Fragment() {
         val div: View = requireView().findViewById(R.id.divider3)
         val txtSponsored: TextView = requireView().findViewById(R.id.txtSponsored)
         val txtFy: TextView = requireView().findViewById(R.id.txtFy)
-
-//        val progressForyou: ProgressBar = requireView().findViewById(R.id.progressForyou)
 
         bannerViewModel.bannersLD.observe(viewLifecycleOwner, Observer {
             bannerAdapter.updateBannerList(it)

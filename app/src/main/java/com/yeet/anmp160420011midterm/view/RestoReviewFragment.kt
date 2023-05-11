@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,6 +42,15 @@ class RestoReviewFragment : Fragment() {
     private fun observe() {
         viewModel.reviewsLD.observe(viewLifecycleOwner, Observer {
             reviewAdapter.updateReviewList(it)
+        })
+        viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
+            val pb: ProgressBar = requireView().findViewById(R.id.progressRvReview)
+
+            if (it == true) {
+                pb.visibility = View.VISIBLE
+            } else {
+                pb.visibility = View.GONE
+            }
         })
     }
 }

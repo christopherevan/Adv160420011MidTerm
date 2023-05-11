@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,6 +43,16 @@ class SavedFragment : Fragment() {
 
         viewModel.restoLD.observe(viewLifecycleOwner, Observer {
             savedListAdapter.updateSavedList(it)
+        })
+
+        viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
+            val pb: ProgressBar = requireView().findViewById(R.id.progressRvSaved)
+
+            if (it == true) {
+                pb.visibility = View.VISIBLE
+            } else {
+                pb.visibility = View.GONE
+            }
         })
     }
 }

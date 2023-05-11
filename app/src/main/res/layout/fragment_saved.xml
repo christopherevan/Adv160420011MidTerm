@@ -17,10 +17,20 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="64dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressRvSaved"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/rvSaved"
+            app:layout_constraintEnd_toEndOf="@+id/rvSaved"
+            app:layout_constraintStart_toStartOf="@+id/rvSaved"
+            app:layout_constraintTop_toTopOf="@+id/rvSaved" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

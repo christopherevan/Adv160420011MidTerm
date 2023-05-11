@@ -50,6 +50,8 @@ class RestoViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun fetch_saved() {
+        loadingLD.value = true
+
         queue = Volley.newRequestQueue(getApplication())
         val url = "https://scheday.site/get_user_saved.php"
 
@@ -59,6 +61,7 @@ class RestoViewModel(application: Application): AndroidViewModel(application) {
                 val sType = object : TypeToken<ArrayList<Resto>>() { }.type
                 val result = Gson().fromJson<ArrayList<Resto>>(it, sType)
                 restoLD.value = result
+                loadingLD.value = false
 
                 Log.d("showvoley", result.toString())
 
