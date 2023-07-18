@@ -1,78 +1,106 @@
 package com.yeet.anmp160420011midterm.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class Order(
-    @SerializedName("order_id")
-    val id: Int,
-    @SerializedName("resto_name")
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0,
+    @ColumnInfo(name = "resto_name")
     val restoName: String,
-    @SerializedName("count_items")
+    @ColumnInfo(name = "count_items")
     val countItems: Int,
+    @ColumnInfo(name = "items")
     val items: ArrayList<String>,
-    @SerializedName("total_price")
+    @ColumnInfo(name = "total_price")
     val totalPrice: Int,
+    @ColumnInfo(name = "date")
     val date: String,
-    val status: String
+    @ColumnInfo(name = "status")
+    val status: String,
 )
 
 data class Resto(
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0,
+    @ColumnInfo(name = "name")
     val name: String,
-    @SerializedName("relative_location")
+    @ColumnInfo(name = "relative_location")
     val relativeLocation: String,
+    @ColumnInfo(name = "location")
     val location: String,
-    @SerializedName("open_hour")
+    @ColumnInfo(name = "open_hour")
     val openHour: String,
-    @SerializedName("close_hour")
+    @ColumnInfo(name = "close_hour")
     val closeHour: String,
-    @SerializedName("image_url")
+    @ColumnInfo(name = "image_url")
     val imageUrl: String,
+    @ColumnInfo(name = "rating")
     val rating: Float,
-    @SerializedName("count_reviews")
+    @ColumnInfo(name = "count_reviews")
     val countReviews: Int
 )
 
 data class Banner(
-    val id: Int,
-    @SerializedName("banner_link")
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0,
+    @ColumnInfo(name = "banner_link")
     val bannerLink: String,
+    @ColumnInfo(name = "title")
     val title: String,
+    @ColumnInfo(name = "sponsor")
     val sponsor: String
 )
 
 data class Review(
-    val id: Int,
-    @SerializedName("user_name")
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0,
+    @ColumnInfo(name="user_name")
     val userName: String,
-    @SerializedName("user_profilepic_url")
+    @ColumnInfo(name = "user_profilepic_url")
     val profilePicUrl: String,
+    @ColumnInfo(name = "content")
     val content: String,
+    @ColumnInfo(name = "rating")
     val rating: Float,
+    @ColumnInfo(name = "date")
     val date: String
 )
 
 data class Menu(
-    val id: Int,
-    @SerializedName("menu_name")
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0,
+    @ColumnInfo(name = "menu_name")
     val name: String,
+    @ColumnInfo(name = "price")
     val price: Int,
-    @SerializedName("menu_img")
+    @ColumnInfo(name = "menu_img")
     val imgUrl: String,
+    @ColumnInfo(name = "desc")
     val desc: String
 )
 
 data class Cart(
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0,
+    @ColumnInfo(name = "name")
     val name: String,
+    @ColumnInfo(name = "price")
     val price: Int,
+    @ColumnInfo(name = "amount")
     val amount: Int
 )
 
 data class User(
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0,
+    @ColumnInfo(name = "username")
     val username: String,
-    @SerializedName("display_name")
+    @ColumnInfo(name = "display_name")
     val displayName: String,
-    @SerializedName("profile_url")
+    @ColumnInfo(name = "profile_url")
     val profileUrl: String
 )
