@@ -14,7 +14,7 @@ data class Order(
     @ColumnInfo(name = "count_items")
     val countItems: Int,
     @ColumnInfo(name = "items")
-    val items: ArrayList<String>,
+    val items: String,
     @ColumnInfo(name = "total_price")
     val totalPrice: Int,
     @ColumnInfo(name = "date")
@@ -23,6 +23,7 @@ data class Order(
     val status: String,
 )
 
+@Entity
 data class Resto(
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0,
@@ -44,6 +45,7 @@ data class Resto(
     val countReviews: Int
 )
 
+@Entity
 data class Banner(
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0,
@@ -55,6 +57,7 @@ data class Banner(
     val sponsor: String
 )
 
+@Entity
 data class Review(
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0,
@@ -70,6 +73,7 @@ data class Review(
     val date: String
 )
 
+@Entity
 data class Menu(
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0,
@@ -83,6 +87,7 @@ data class Menu(
     val desc: String
 )
 
+@Entity
 data class Cart(
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0,
@@ -94,11 +99,14 @@ data class Cart(
     val amount: Int
 )
 
+@Entity
 data class User(
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0,
     @ColumnInfo(name = "username")
     val username: String,
+    @ColumnInfo(name = "pass")
+    val pass: String,
     @ColumnInfo(name = "display_name")
     val displayName: String,
     @ColumnInfo(name = "profile_url")
