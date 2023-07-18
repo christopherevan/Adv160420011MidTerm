@@ -26,7 +26,7 @@ class RestoViewModel(application: Application): AndroidViewModel(application) {
         restoLoadErrorLD.value = false
 
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://scheday.site/resto_get.php"
+        val url = "http://wheli.site/adv/resto_get.php"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,
@@ -53,7 +53,7 @@ class RestoViewModel(application: Application): AndroidViewModel(application) {
         loadingLD.value = true
 
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://scheday.site/get_user_saved.php"
+        val url = "http://wheli.site/adv/get_user_saved.php"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,
@@ -79,7 +79,7 @@ class RestoViewModel(application: Application): AndroidViewModel(application) {
         loadingLD.value = true
 
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://scheday.site/get_home_restos.php"
+        val url = "http://wheli.site/adv/get_home_restos.php"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,
@@ -103,7 +103,7 @@ class RestoViewModel(application: Application): AndroidViewModel(application) {
 
     fun fetch_home_vertical() {
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://scheday.site/get_home_restos.php"
+        val url = "http://wheli.site/adv/get_home_restos.php"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,

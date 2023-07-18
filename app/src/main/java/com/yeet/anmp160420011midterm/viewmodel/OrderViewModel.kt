@@ -24,7 +24,7 @@ class OrderViewModel(application: Application): AndroidViewModel(application) {
         loadingLD.value = true
 
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://scheday.site/get_user_orders.php"
+        val url = "http://wheli.site/adv/get_user_orders.php"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,

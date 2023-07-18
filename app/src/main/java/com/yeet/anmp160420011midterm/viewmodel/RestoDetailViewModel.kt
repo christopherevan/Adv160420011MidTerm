@@ -23,7 +23,7 @@ class RestoDetailViewModel(application: Application): AndroidViewModel(applicati
 
     fun fetchResto(id: Int) {
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://scheday.site/get_resto_detail.php?resto_id=$id"
+        val url = "http://wheli.site/adv/get_resto_detail.php?resto_id=$id"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,
@@ -46,7 +46,7 @@ class RestoDetailViewModel(application: Application): AndroidViewModel(applicati
 
     fun fetchMenu(id: Int) {
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://scheday.site/get_menu.php?resto_id=$id"
+        val url = "http://wheli.site/adv/get_menu.php?resto_id=$id"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,
@@ -69,7 +69,7 @@ class RestoDetailViewModel(application: Application): AndroidViewModel(applicati
 
     fun fetchMenuBestSeller(id: Int) {
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://scheday.site/get_bestseller.php?resto_id=$id"
+        val url = "http://wheli.site/adv/get_bestseller.php?resto_id=$id"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,

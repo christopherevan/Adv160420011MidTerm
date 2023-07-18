@@ -22,7 +22,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
 
     fun fetch(unm: String) {
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://scheday.site/get_user.php?username=$unm"
+        val url = "http://wheli.site/adv/get_user.php?username=$unm"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,

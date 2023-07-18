@@ -22,7 +22,7 @@ class MenuViewModel(application: Application): AndroidViewModel(application) {
 
     fun fetch(id: Int) {
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://scheday.site/get_menu_detail.php?menu_id=$id"
+        val url = "http://wheli.site/adv/get_menu_detail.php?menu_id=$id"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,

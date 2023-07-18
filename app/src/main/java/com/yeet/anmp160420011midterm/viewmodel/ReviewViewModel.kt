@@ -23,7 +23,7 @@ class ReviewViewModel(application: Application): AndroidViewModel(application) {
     fun fetch(id: Int) {
         loadingLD.value = true
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://scheday.site/get_reviews.php?resto_id=$id"
+        val url = "http://wheli.site/adv/get_reviews.php?resto_id=$id"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,
