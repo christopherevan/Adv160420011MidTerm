@@ -16,5 +16,15 @@ interface Dao {
     fun insertCart(vararg cart: Cart)
     fun insertUser(vararg user: User)
 
+    @Query("SELECT * FROM resto")
+    fun selectAllResto(): List<Resto>
 
+    @Query("SELECT * FROM resto WHERE uuid = :id")
+    fun selectResto(id:Int): Resto
+
+    @Query("SELECT * FROM user WHERE username=:username and password=:password")
+    fun selectUser(username:String, passwowrd:String): User
+
+    @Query("SELECT * FROM review WHERE resto_id=:resto_id")
+    fun selectReview(resto_id:Int): Review
 }
