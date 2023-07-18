@@ -1,5 +1,7 @@
 package com.yeet.anmp160420011midterm.view
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.drawerlayout.widget.DrawerLayout
@@ -10,12 +12,15 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.yeet.anmp160420011midterm.R
+import com.yeet.anmp160420011midterm.model.Global
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        checkUser()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -32,5 +37,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, drawerLayout) || super.onSupportNavigateUp()
+    }
+
+    fun checkUser() {
+        val sharedPref = getPreferences(Context.MODE_PRIVATE)
+        val username = sharedPref.getString(Global.usernameKey, "")
+
+        if (username == "") {
+            val intent = Intent(this, WelcomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

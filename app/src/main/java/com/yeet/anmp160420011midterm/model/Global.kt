@@ -4,4 +4,6 @@ object Global {
     var cart: ArrayList<Cart> = arrayListOf()
 
     var userBalance: Int = 364000
+
+    val usernameKey = "usrname"
 }

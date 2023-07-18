@@ -11,6 +11,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.yeet.anmp160420011midterm.model.Banner
+import com.yeet.anmp160420011midterm.model.Menu
 import com.yeet.anmp160420011midterm.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +31,8 @@ class BannerViewModel(application: Application): AndroidViewModel(application), 
     fun fetch() {
         launch {
             val db = buildDb(getApplication())
+
+            db.dao().insertMenu(Menu("a", "b", 240, "hh", "abc"))
         }
         /*loadingLD.value = true
 
