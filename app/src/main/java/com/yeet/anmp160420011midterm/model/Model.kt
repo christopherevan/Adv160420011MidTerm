@@ -3,12 +3,9 @@ package com.yeet.anmp160420011midterm.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
 
 @Entity
 data class Order(
-    @PrimaryKey(autoGenerate = true)
-    var uuid:Int =0,
     @ColumnInfo(name = "resto_name")
     val restoName: String,
     @ColumnInfo(name = "count_items")
@@ -21,12 +18,13 @@ data class Order(
     val date: String,
     @ColumnInfo(name = "status")
     val status: String,
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0
+}
 
 @Entity
 data class Resto(
-    @PrimaryKey(autoGenerate = true)
-    var uuid:Int =0,
     @ColumnInfo(name = "name")
     val name: String,
     @ColumnInfo(name = "relative_location")
@@ -43,24 +41,26 @@ data class Resto(
     val rating: Float,
     @ColumnInfo(name = "count_reviews")
     val countReviews: Int
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0
+}
 
 @Entity
 data class Banner(
-    @PrimaryKey(autoGenerate = true)
-    var uuid:Int =0,
     @ColumnInfo(name = "banner_link")
     val bannerLink: String,
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "sponsor")
     val sponsor: String
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0
+}
 
 @Entity
 data class Review(
-    @PrimaryKey(autoGenerate = true)
-    var uuid:Int =0,
     @ColumnInfo(name="user_name")
     val userName: String,
     @ColumnInfo(name = "user_profilepic_url")
@@ -71,38 +71,43 @@ data class Review(
     val rating: Float,
     @ColumnInfo(name = "date")
     val date: String
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0
+}
 
 @Entity
 data class Menu(
-    @PrimaryKey(autoGenerate = true)
-    var uuid:Int =0,
     @ColumnInfo(name = "menu_name")
     val name: String,
+    @ColumnInfo(name = "type")
+    val type: String,
     @ColumnInfo(name = "price")
     val price: Int,
     @ColumnInfo(name = "menu_img")
     val imgUrl: String,
     @ColumnInfo(name = "desc")
     val desc: String
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0
+}
 
 @Entity
 data class Cart(
-    @PrimaryKey(autoGenerate = true)
-    var uuid:Int =0,
     @ColumnInfo(name = "name")
     val name: String,
     @ColumnInfo(name = "price")
     val price: Int,
     @ColumnInfo(name = "amount")
     val amount: Int
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0
+}
 
 @Entity
 data class User(
-    @PrimaryKey(autoGenerate = true)
-    var uuid:Int =0,
     @ColumnInfo(name = "username")
     val username: String,
     @ColumnInfo(name = "pass")
@@ -111,4 +116,7 @@ data class User(
     val displayName: String,
     @ColumnInfo(name = "profile_url")
     val profileUrl: String
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0
+}
