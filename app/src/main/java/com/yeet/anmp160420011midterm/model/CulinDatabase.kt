@@ -17,7 +17,7 @@ abstract class CulinDatabase:RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 CulinDatabase::class.java,
-                "newtododb").build()
+                "newculindb").build()
 
         operator fun invoke(context:Context) {
             if(instance!=null) {

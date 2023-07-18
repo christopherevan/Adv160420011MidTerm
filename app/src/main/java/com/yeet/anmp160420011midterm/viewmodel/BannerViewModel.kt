@@ -11,17 +11,27 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.yeet.anmp160420011midterm.model.Banner
+import com.yeet.anmp160420011midterm.util.buildDb
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class BannerViewModel(application: Application): AndroidViewModel(application) {
+class BannerViewModel(application: Application): AndroidViewModel(application), CoroutineScope {
     val bannersLD = MutableLiveData<ArrayList<Banner>>()
     val bannerLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
+    private val job = Job()
 
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null
 
     fun fetch() {
-        loadingLD.value = true
+        launch {
+            val db = buildDb(getApplication())
+        }
+        /*loadingLD.value = true
 
         queue = Volley.newRequestQueue(getApplication())
         val url = "http://wheli.site/adv/get_banners.php"
@@ -43,6 +53,8 @@ class BannerViewModel(application: Application): AndroidViewModel(application) {
         )
 
         stringRequest.tag = TAG
-        queue?.add(stringRequest)
+        queue?.add(stringRequest)*/
     }
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.IO
 }
