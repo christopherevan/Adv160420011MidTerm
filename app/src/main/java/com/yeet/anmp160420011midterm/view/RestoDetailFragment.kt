@@ -92,13 +92,13 @@ class RestoDetailFragment : Fragment() {
             txtOpenHours.text = it.openHour + " - " + it.closeHour
 
             btnReviews.setOnClickListener { it1 ->
-                val action = RestoDetailFragmentDirections.actionReviewFromDetail(it.id)
-                Navigation.findNavController(it1).navigate(action)
+//                val action = RestoDetailFragmentDirections.actionReviewFromDetail(it.id)
+//                Navigation.findNavController(it1).navigate(action)
             }
 
             fabCart.setOnClickListener { it2 ->
-                val action = RestoDetailFragmentDirections.actionCart(it.name, it.id)
-                Navigation.findNavController(it2).navigate(action)
+//                val action = RestoDetailFragmentDirections.actionCart(it.name, it.id)
+//                Navigation.findNavController(it2).navigate(action)
             }
 
             img.loadImage(it.imageUrl, progress)

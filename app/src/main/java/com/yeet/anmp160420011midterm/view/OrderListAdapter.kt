@@ -77,8 +77,8 @@ class OrderListAdapter(val orderList:ArrayList<Order>)
         }
 
         btnDetail.setOnClickListener {
-            val action = OrdersFragmentDirections.actionOrderDetailFromOrders(orderList[position].id)
-            Navigation.findNavController(it).navigate(action)
+//            val action = OrdersFragmentDirections.actionOrderDetailFromOrders(orderList[position].id)
+//            Navigation.findNavController(it).navigate(action)
         }
     }
 

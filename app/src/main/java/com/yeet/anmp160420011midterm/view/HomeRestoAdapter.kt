@@ -38,8 +38,8 @@ class HomeRestoAdapter(private val restoList:ArrayList<Resto>)
         txtName.text = restoList[position].name
         txtLocation.text = restoList[position].relativeLocation
         btnDetail.setOnClickListener {
-            val action = HomeFragmentDirections.actionRestoDetailFromHome(restoList[position].id)
-            Navigation.findNavController(it).navigate(action)
+//            val action = HomeFragmentDirections.actionRestoDetailFromHome(restoList[position].id)
+//            Navigation.findNavController(it).navigate(action)
         }
 
         img.loadImage(restoList[position].imageUrl, progressBar)

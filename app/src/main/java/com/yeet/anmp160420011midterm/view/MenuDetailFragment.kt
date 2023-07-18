@@ -56,8 +56,8 @@ class MenuDetailFragment : Fragment() {
             img.loadImage(it.imgUrl, progressBar)
 
             btnCart.setOnClickListener { i ->
-                val menu = Cart(it.id, it.name, it.price, txtQty.text.toString().toInt())
-                Global.cart.add(menu)
+//                val menu = Cart(it.id, it.name, it.price, txtQty.text.toString().toInt())
+//                Global.cart.add(menu)
                 requireActivity().onBackPressed()
             }
         })

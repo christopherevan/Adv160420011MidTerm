@@ -39,8 +39,8 @@ class ExploreAdapter(private val restoList:ArrayList<Resto>)
         txtRestoName.text = restoList[position].name
         txtReviews.text = restoList[position].rating.toString() + " - " + restoList[position].countReviews + " reviews"
         btnDetail.setOnClickListener {
-            val action = ExploreFragmentDirections.actionRestoDetailFromExplore(restoList[position].id)
-            Navigation.findNavController(it).navigate(action)
+//            val action = ExploreFragmentDirections.actionRestoDetailFromExplore(restoList[position].id)
+//            Navigation.findNavController(it).navigate(action)
         }
 
         img.loadImage(restoList[position].imageUrl, progressBar)

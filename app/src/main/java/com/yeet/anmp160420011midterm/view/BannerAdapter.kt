@@ -34,8 +34,8 @@ class BannerAdapter(private val bannerList:ArrayList<Banner>)
         val progressBar: ProgressBar = holder.view.findViewById(R.id.progressBarBanner)
 
         btnMore.setOnClickListener {
-            val action = HomeFragmentDirections.actionRestoDetailFromHome(bannerList[position].id)
-            Navigation.findNavController(it).navigate(action)
+//            val action = HomeFragmentDirections.actionRestoDetailFromHome(bannerList[position].id)
+//            Navigation.findNavController(it).navigate(action)
         }
 
         txtTitle.text = bannerList[position].title

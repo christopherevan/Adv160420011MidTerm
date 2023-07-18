@@ -38,8 +38,8 @@ class MenuAdapter(private val menuList:ArrayList<Menu>)
         txtMenuPrice.text = menuList[position].price.toString().toCurrencyFormat()
 
         btnCart.setOnClickListener {
-            val action = RestoDetailFragmentDirections.actionMenuDetail(menuList[position].id)
-            Navigation.findNavController(it).navigate(action)
+//            val action = RestoDetailFragmentDirections.actionMenuDetail(menuList[position].id)
+//            Navigation.findNavController(it).navigate(action)
         }
 
         img.loadImage(menuList[position].imgUrl, progressBar)

@@ -38,8 +38,8 @@ class SavedListAdapter(private val savedList:ArrayList<Resto>)
         txtRestoName.text = savedList[position].name
         txtReviews.text = savedList[position].rating.toString() + " - " + savedList[position].countReviews + " reviews"
         btnDetail.setOnClickListener {
-            val action = SavedFragmentDirections.actionRestoDetailFromSaved(savedList[position].id)
-            Navigation.findNavController(it).navigate(action)
+//            val action = SavedFragmentDirections.actionRestoDetailFromSaved(savedList[position].id)
+//            Navigation.findNavController(it).navigate(action)
         }
 
         img.loadImage(savedList[position].imageUrl, progressBar)
