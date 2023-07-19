@@ -24,6 +24,7 @@ import com.yeet.anmp160420011midterm.util.NotificationHelper
 import com.yeet.anmp160420011midterm.util.OrderWorker
 import com.yeet.anmp160420011midterm.util.toCurrencyFormat
 import com.yeet.anmp160420011midterm.viewmodel.BannerViewModel
+import com.yeet.anmp160420011midterm.viewmodel.MenuViewModel
 import com.yeet.anmp160420011midterm.viewmodel.RestoViewModel
 import java.util.concurrent.TimeUnit
 
@@ -34,6 +35,8 @@ class HomeFragment : Fragment() {
     private lateinit var homeRestoViewModel: RestoViewModel
     private val homeRestoAdapterV = HomeRestoAdapterVertical(arrayListOf())
     private val homeRestoAdapterH = HomeRestoAdapter(arrayListOf())
+
+    private lateinit var menusViewModel: MenuViewModel
 
     private var loadingBannerLD = MutableLiveData<Boolean>()
     private var loadingRestoLD = MutableLiveData<Boolean>()
@@ -62,6 +65,11 @@ class HomeFragment : Fragment() {
         homeRestoViewModel = ViewModelProvider(this).get(RestoViewModel::class.java)
         homeRestoViewModel.fetch_home_horizontal()
         homeRestoViewModel.fetch_home_vertical()
+
+        menusViewModel = ViewModelProvider(this).get(MenuViewModel::class.java)
+        menusViewModel.fetchNewestMenus()
+
+
 
         val rvForYou: RecyclerView = view.findViewById(R.id.rvForYou)
         rvForYou.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -100,9 +108,9 @@ class HomeFragment : Fragment() {
             loadingBannerLD.value = it != true
         })
 
-        homeRestoViewModel.restoLD.observe(viewLifecycleOwner, Observer {
-            homeRestoAdapterV.updateRestoList(it)
-        })
+//        homeRestoViewModel.restoLD.observe(viewLifecycleOwner, Observer {
+//            homeRestoAdapterV.updateRestoList(it)
+//        })
         homeRestoViewModel.loadingLD.observe(viewLifecycleOwner, Observer {
             loadingRestoLD.value = it != true
         })
@@ -126,6 +134,10 @@ class HomeFragment : Fragment() {
                     txtFy.visibility = View.VISIBLE
                 }
             })
+        })
+
+        menusViewModel.menusLD.observe(viewLifecycleOwner, Observer {
+
         })
     }
 }

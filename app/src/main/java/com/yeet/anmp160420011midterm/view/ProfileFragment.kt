@@ -11,8 +11,10 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import com.yeet.anmp160420011midterm.R
+import com.yeet.anmp160420011midterm.model.User
 import com.yeet.anmp160420011midterm.util.loadImage
 import com.yeet.anmp160420011midterm.viewmodel.UserViewModel
 
@@ -32,10 +34,11 @@ class ProfileFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-        val btnlogout = view.findViewById<Button>(R.id.btnLogout)
+        val btnlogout = view.findViewById<FloatingActionButton>(R.id.btnLogout)
         btnlogout.setOnClickListener {
             onLogoutClick()
         }
+
 //        viewModel.fetch(username)
         
 //        observe()
@@ -51,27 +54,40 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        Toast.makeText(context, "Logout success", Toast.LENGTH_SHORT).show()
         val intent = Intent(context, WelcomeActivity::class.java)
         startActivity(intent)
         activity?.finish()
     }
 
-//    @SuppressLint("SetTextI18n")
-//    private fun observe() {
-//        viewModel.userLD.observe(viewLifecycleOwner, Observer {
-//            val img: ImageView = requireView().findViewById(R.id.imgUserProfile)
-//            val txtUsername: TextView = requireView().findViewById(R.id.txtUsernameProfile)
-//            val txtDispName: TextInputEditText = requireView().findViewById(R.id.txtDispNameProfile)
-//            val pb: ProgressBar = requireView().findViewById(R.id.progressBar)
-//            val btn: Button = requireView().findViewById(R.id.btnUpdate)
-//
-//            img.loadImage(it.profileUrl, pb)
-//            txtUsername.text = "Username: ${it.username}"
-//            txtDispName.setText(it.displayName)
-//
-//            btn.setOnClickListener {
-//                Toast.makeText(context, "Feature not yet implemented", Toast.LENGTH_SHORT).show()
-//            }
-//        })
-//    }
+    fun onPasswordResetClick(password: String) {
+        val shared = activity?.getSharedPreferences(R.string.preference_file_key.toString(), Context.MODE_PRIVATE)
+        val username = shared?.getString(R.string.username_key.toString(), "")
+        val id = shared?.getInt(R.string.user_id_key.toString(), 0)
+        viewModel.login(username!!, password)
+
+        observe(password)
+    }
+
+    fun onUpdateProfileClick(user: User) {
+        viewModel.updateName(user.displayName, user.uuid)
+
+        // Reload activity
+        activity?.finish()
+        startActivity(activity?.intent!!)
+    }
+
+    fun observe(password: String) {
+        viewModel.userLD.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                viewModel.resetPassword(password, id)
+                Toast.makeText(context, "Reset password success. Please login again", Toast.LENGTH_SHORT).show()
+                val intent = Intent(context, WelcomeActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            } else {
+                Toast.makeText(context, "Incorrect old password", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
 }

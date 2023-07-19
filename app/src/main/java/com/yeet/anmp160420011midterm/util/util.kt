@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
+import androidx.databinding.BindingAdapter
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
@@ -57,4 +58,9 @@ fun String.toCurrencyFormat(): String {
     val numberFormat = NumberFormat.getCurrencyInstance(localeID)
     numberFormat.minimumFractionDigits = 0
     return numberFormat.format(doubleValue)
+}
+
+@BindingAdapter("android:imageUrl", "android:progressBar")
+fun loadPhotoURL(view: ImageView, url: String, pb: ProgressBar) {
+    view.loadImage(url, pb)
 }

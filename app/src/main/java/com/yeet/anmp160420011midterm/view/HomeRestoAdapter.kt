@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.yeet.anmp160420011midterm.R
 import com.yeet.anmp160420011midterm.model.Resto
@@ -22,14 +21,14 @@ class HomeRestoAdapter(private val restoList:ArrayList<Resto>)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeRestoViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.explore_resto_horizontal_item, parent, false)
+        val view = inflater.inflate(R.layout.home_menu_horizontal_item, parent, false)
         return HomeRestoViewHolder(view)
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: HomeRestoViewHolder, position: Int) {
         Log.d("aa", restoList.toString())
-        val txtName: TextView = holder.view.findViewById(R.id.txtRestoNameHomeHorizontal)
+        val txtName: TextView = holder.view.findViewById(R.id.txtMenuNameHomeHorizontal)
         val txtLocation: TextView = holder.view.findViewById(R.id.txtRestoLocHomeHorizontal)
         val btnDetail: Button = holder.view.findViewById(R.id.btnDetailRestoHomeHorizontal)
         val img: ImageView = holder.view.findViewById(R.id.imgRestoHomeHorizontal)

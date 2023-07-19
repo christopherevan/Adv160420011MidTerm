@@ -77,4 +77,18 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
             userLD.postValue(user)
         }
     }
+
+    fun updateName(name: String, id: Int) {
+        launch {
+            val db = buildDb(getApplication())
+            db.dao().updateName(name, id)
+        }
+    }
+
+    fun resetPassword(newPass: String, id: Int) {
+        launch {
+            val db = buildDb(getApplication())
+            db.dao().updatePassword(newPass, id)
+        }
+    }
 }

@@ -5,4 +5,5 @@
     <string name="resto_name">Resto</string>
     <string name="preference_file_key">ubaya_kuliner_preference</string>
     <string name="username_key">usrname</string>
+    <string name="user_id_key">usr_id</string>
 </resources>

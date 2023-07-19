@@ -41,9 +41,9 @@ class SavedFragment : Fragment() {
     private fun observe() {
         val rv: RecyclerView = requireView().findViewById(R.id.rvSaved)
 
-        viewModel.restoLD.observe(viewLifecycleOwner, Observer {
-            savedListAdapter.updateSavedList(it)
-        })
+//        viewModel.restoLD.observe(viewLifecycleOwner, Observer {
+//            savedListAdapter.updateSavedList(it)
+//        })
 
         viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
             val pb: ProgressBar = requireView().findViewById(R.id.progressRvSaved)

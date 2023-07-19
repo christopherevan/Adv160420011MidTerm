@@ -50,6 +50,7 @@ class LoginFragment : Fragment() {
                 if (sharedPref != null) {
                     with (sharedPref.edit()) {
                         putString(R.string.username_key.toString(), it.username)
+                        putInt(R.string.user_id_key.toString(), it.uuid)
                         apply()
                     }
                 }

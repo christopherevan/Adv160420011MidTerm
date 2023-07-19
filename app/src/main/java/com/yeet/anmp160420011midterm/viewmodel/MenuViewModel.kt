@@ -11,35 +11,55 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.yeet.anmp160420011midterm.model.Menu
+import com.yeet.anmp160420011midterm.util.buildDb
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class MenuViewModel(application: Application): AndroidViewModel(application) {
+class MenuViewModel(application: Application): AndroidViewModel(application), CoroutineScope {
     val menuLD = MutableLiveData<Menu>()
+    val menusLD = MutableLiveData<List<Menu>>()
     val menuLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
 
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null
 
+    private var job = Job()
+
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.IO
+
     fun fetch(id: Int) {
-        queue = Volley.newRequestQueue(getApplication())
-        val url = "http://wheli.site/adv/get_menu_detail.php?menu_id=$id"
+//        queue = Volley.newRequestQueue(getApplication())
+//        val url = "http://wheli.site/adv/get_menu_detail.php?menu_id=$id"
+//
+//        val stringRequest = StringRequest(
+//            Request.Method.GET, url,
+//            {
+//                val sType = object : TypeToken<Menu>() { }.type
+//                val result = Gson().fromJson<Menu>(it, sType)
+//                menuLD.value = result
+//
+//                Log.d("showvoley", result.toString())
+//
+//            },
+//            {
+//                Log.d("showvoley", it.toString())
+//            }
+//        )
+//
+//        stringRequest.tag = TAG
+//        queue?.add(stringRequest)
+    }
 
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
-            {
-                val sType = object : TypeToken<Menu>() { }.type
-                val result = Gson().fromJson<Menu>(it, sType)
-                menuLD.value = result
-
-                Log.d("showvoley", result.toString())
-
-            },
-            {
-                Log.d("showvoley", it.toString())
-            }
-        )
-
-        stringRequest.tag = TAG
-        queue?.add(stringRequest)
+    fun fetchNewestMenus() {
+//        launch {
+//            val db = buildDb(getApplication())
+//            val menus: List<Menu> = db.dao().selectNewestMenus()
+//            menusLD.postValue(menus)
+//        }
     }
 }

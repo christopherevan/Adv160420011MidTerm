@@ -30,4 +30,13 @@ interface Dao {
     fun selectReview(id:Int): Review
     @Query("SELECT * FROM user WHERE username=:username")
     fun checkUsernameAvailable(username: String): User
+
+    @Query("UPDATE user SET display_name=:display_name WHERE uuid=:id")
+    fun updateName(display_name: String, id: Int)
+
+    @Query("UPDATE user SET pass=:new_password WHERE uuid=:id")
+    fun updatePassword(new_password: String, id: Int)
+
+    @Query("SELECT * FROM menu ORDER BY uuid DESC LIMIT 10")
+    fun selectNewestMenusAndResto(): List<Menu>
 }

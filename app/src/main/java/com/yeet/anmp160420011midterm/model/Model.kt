@@ -1,8 +1,10 @@
 package com.yeet.anmp160420011midterm.model
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.Relation
 
 @Entity
 data class Order(
@@ -121,3 +123,11 @@ data class User(
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0
 }
+
+//data class MenuAndResto(
+//    @Embedded val menu: Menu,
+//    @Relation(
+//        parentColumn = "uuid",
+//        entityColumn = "uuid"
+//    )
+//)
