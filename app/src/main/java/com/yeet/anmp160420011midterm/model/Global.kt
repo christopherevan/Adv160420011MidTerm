@@ -5,5 +5,4 @@ object Global {
 
     var userBalance: Int = 364000
 
-    val usernameKey = "usrname"
 }

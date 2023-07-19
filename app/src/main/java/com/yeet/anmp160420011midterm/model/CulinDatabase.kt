@@ -19,7 +19,9 @@ abstract class CulinDatabase:RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 CulinDatabase::class.java,
-                "newculindb").addMigrations(MIGRATION_1_2, MIGRATION_2_3).build()
+                "newculindb")
+                .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+                .build()
 
         operator fun invoke(context:Context) {
             if(instance!=null) {

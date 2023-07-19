@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        checkUser()
+        checkUser()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -40,10 +41,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun checkUser() {
-        val sharedPref = getPreferences(Context.MODE_PRIVATE)
-        val username = sharedPref.getString(Global.usernameKey, "")
+        val sharedPref = getSharedPreferences(R.string.preference_file_key.toString(), Context.MODE_PRIVATE)
+        val username = sharedPref.getString(R.string.username_key.toString(), null)
 
-        if (username == "") {
+        if (username == null) {
             val intent = Intent(this, WelcomeActivity::class.java)
             startActivity(intent)
             finish()

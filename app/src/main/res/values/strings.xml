@@ -3,4 +3,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="resto_name">Resto</string>
+    <string name="preference_file_key">ubaya_kuliner_preference</string>
+    <string name="username_key">usrname</string>
 </resources>

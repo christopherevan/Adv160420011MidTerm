@@ -14,7 +14,8 @@ interface Dao {
     //fun insertReview(vararg review: Review)
     fun insertMenu(vararg menu: Menu)
     //fun insertCart(vararg cart: Cart)
-    //fun insertUser(vararg user: User)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertUser(vararg user: User)
 
     @Query("SELECT * FROM resto")
     fun selectAllResto(): List<Resto>
@@ -23,8 +24,10 @@ interface Dao {
     fun selectResto(id:Int): Resto
 
     @Query("SELECT * FROM user WHERE username=:username AND pass=:pass")
-    fun selectUser(username:String, pass:String): User
+    fun login(username:String, pass:String): User
 
     @Query("SELECT * FROM review WHERE uuid=:id")
     fun selectReview(id:Int): Review
+    @Query("SELECT * FROM user WHERE username=:username")
+    fun checkUsernameAvailable(username: String): User
 }

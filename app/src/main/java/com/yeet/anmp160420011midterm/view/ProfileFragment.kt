@@ -1,6 +1,8 @@
 package com.yeet.anmp160420011midterm.view
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,27 +31,47 @@ class ProfileFragment : Fragment() {
         val username = "johndoe369"
 
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        viewModel.fetch(username)
+
+        val btnlogout = view.findViewById<Button>(R.id.btnLogout)
+        btnlogout.setOnClickListener {
+            onLogoutClick()
+        }
+//        viewModel.fetch(username)
         
-        observe()
+//        observe()
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun observe() {
-        viewModel.userLD.observe(viewLifecycleOwner, Observer {
-            val img: ImageView = requireView().findViewById(R.id.imgUserProfile)
-            val txtUsername: TextView = requireView().findViewById(R.id.txtUsernameProfile)
-            val txtDispName: TextInputEditText = requireView().findViewById(R.id.txtDispNameProfile)
-            val pb: ProgressBar = requireView().findViewById(R.id.progressBar)
-            val btn: Button = requireView().findViewById(R.id.btnUpdate)
-
-            img.loadImage(it.profileUrl, pb)
-            txtUsername.text = "Username: ${it.username}"
-            txtDispName.setText(it.displayName)
-            
-            btn.setOnClickListener {
-                Toast.makeText(context, "Feature not yet implemented", Toast.LENGTH_SHORT).show()
+    fun onLogoutClick() {
+        val shared = activity?.getSharedPreferences(R.string.preference_file_key.toString(), Context.MODE_PRIVATE)
+        if (shared != null) {
+            with (shared.edit()) {
+                remove(R.string.username_key.toString())
+                clear()
+                apply()
             }
-        })
+        }
+
+        val intent = Intent(context, WelcomeActivity::class.java)
+        startActivity(intent)
+        activity?.finish()
     }
+
+//    @SuppressLint("SetTextI18n")
+//    private fun observe() {
+//        viewModel.userLD.observe(viewLifecycleOwner, Observer {
+//            val img: ImageView = requireView().findViewById(R.id.imgUserProfile)
+//            val txtUsername: TextView = requireView().findViewById(R.id.txtUsernameProfile)
+//            val txtDispName: TextInputEditText = requireView().findViewById(R.id.txtDispNameProfile)
+//            val pb: ProgressBar = requireView().findViewById(R.id.progressBar)
+//            val btn: Button = requireView().findViewById(R.id.btnUpdate)
+//
+//            img.loadImage(it.profileUrl, pb)
+//            txtUsername.text = "Username: ${it.username}"
+//            txtDispName.setText(it.displayName)
+//
+//            btn.setOnClickListener {
+//                Toast.makeText(context, "Feature not yet implemented", Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//    }
 }
