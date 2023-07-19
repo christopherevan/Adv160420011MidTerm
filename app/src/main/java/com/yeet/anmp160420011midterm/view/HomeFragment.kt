@@ -15,11 +15,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import com.yeet.anmp160420011midterm.R
 import com.yeet.anmp160420011midterm.model.Global
+import com.yeet.anmp160420011midterm.util.NotificationHelper
+import com.yeet.anmp160420011midterm.util.OrderWorker
 import com.yeet.anmp160420011midterm.util.toCurrencyFormat
 import com.yeet.anmp160420011midterm.viewmodel.BannerViewModel
 import com.yeet.anmp160420011midterm.viewmodel.RestoViewModel
+import java.util.concurrent.TimeUnit
 
 class HomeFragment : Fragment() {
     private lateinit var bannerViewModel: BannerViewModel
@@ -73,6 +79,9 @@ class HomeFragment : Fragment() {
         val btnTopup: Button = view.findViewById(R.id.btnTopupHome)
         btnTopup.setOnClickListener {
             Toast.makeText(context, "Feature not yet implemented", Toast.LENGTH_SHORT).show()
+
+
+
         }
         
         observe()

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.yeet.anmp160420011midterm.R
+import com.yeet.anmp160420011midterm.model.User
 
 class RegisterFragment : Fragment() {
     override fun onCreateView(

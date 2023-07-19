@@ -6,9 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import com.yeet.anmp160420011midterm.R
 import com.yeet.anmp160420011midterm.model.Cart
+import com.yeet.anmp160420011midterm.util.NotificationHelper
+import com.yeet.anmp160420011midterm.util.OrderWorker
 import com.yeet.anmp160420011midterm.util.toCurrencyFormat
+import java.util.concurrent.TimeUnit
 
 class CartAdapter(private val cartList:ArrayList<Cart>)
     : RecyclerView.Adapter<CartAdapter.CartViewHolder>()
@@ -40,5 +46,22 @@ class CartAdapter(private val cartList:ArrayList<Cart>)
         cartList.clear()
         cartList.addAll(newCartList)
         notifyDataSetChanged()
+    }
+
+    fun setNotifications(holder: CartViewHolder) {
+        NotificationHelper(holder.view.context)
+            .createNotification("Order Placed", "Your order has been sent to the kitchen, we'll notify you when it's ready")
+
+//      ORDER READY NOTIF
+        val myWorkRequest = OneTimeWorkRequestBuilder<OrderWorker>()
+            .setInitialDelay(15, TimeUnit.SECONDS)
+            .setInputData(
+                workDataOf(
+                    "title" to "Order Ready",
+                    "message" to "Your order is ready. Please pick up your order"
+                )
+            )
+            .build()
+        WorkManager.getInstance(holder.view.context).enqueue(myWorkRequest)
     }
 }
