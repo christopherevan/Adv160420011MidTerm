@@ -32,7 +32,6 @@ class BannerViewModel(application: Application): AndroidViewModel(application), 
         launch {
             val db = buildDb(getApplication())
 
-            db.dao().insertMenu(Menu("a", "b", 240, "hh", "abc"))
         }
         /*loadingLD.value = true
 

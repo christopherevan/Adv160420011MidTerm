@@ -5,6 +5,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.yeet.anmp160420011midterm.R
@@ -14,9 +16,24 @@ import java.util.*
 
 val DB_NAME = "newculindb"
 fun buildDb(context: Context): CulinDatabase {
-    val db = Room.databaseBuilder(context, CulinDatabase::class.java, DB_NAME)
+    val db = Room.databaseBuilder(context, CulinDatabase::class.java, DB_NAME).addMigrations(MIGRATION_1_2,
+        MIGRATION_2_3)
         .build()
     return db
+}
+
+val MIGRATION_1_2 = object : Migration(1, 2) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL(
+            "ALTER TABLE Menu ADD COLUMN resto_id INTEGER DEFAULT 0 not null")
+    }
+}
+
+val MIGRATION_2_3 = object : Migration(2, 3) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL(
+            "ALTER TABLE Review ADD COLUMN resto_id INTEGER DEFAULT 0 not null") //is_done field use integer instead of boolean because SQLite doesn't have a separate boolean storage class. Boolean values are stored as integers (0 or 1).
+    }
 }
 
 fun ImageView.loadImage(url: String?, progressBar: ProgressBar) {

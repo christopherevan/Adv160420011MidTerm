@@ -14,7 +14,7 @@ interface Dao {
     //fun insertReview(vararg review: Review)
     fun insertMenu(vararg menu: Menu)
     //fun insertCart(vararg cart: Cart)
-    fun insertUser(vararg user: User)
+    //fun insertUser(vararg user: User)
 
     @Query("SELECT * FROM resto")
     fun selectAllResto(): List<Resto>

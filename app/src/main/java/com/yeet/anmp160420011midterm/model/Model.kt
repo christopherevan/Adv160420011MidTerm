@@ -70,7 +70,8 @@ data class Review(
     @ColumnInfo(name = "rating")
     val rating: Float,
     @ColumnInfo(name = "date")
-    val date: String
+    val date: String,
+
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0
@@ -87,7 +88,7 @@ data class Menu(
     @ColumnInfo(name = "menu_img")
     val imgUrl: String,
     @ColumnInfo(name = "desc")
-    val desc: String
+    val desc: String,
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0
