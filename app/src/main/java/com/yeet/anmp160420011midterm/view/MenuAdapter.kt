@@ -49,7 +49,7 @@ class MenuAdapter(private val menuList:ArrayList<Menu>)
         return menuList.size
     }
 
-    fun updateMenuList(newMenuList: ArrayList<Menu>) {
+    fun updateMenuList(newMenuList: List<Menu>) {
         menuList.clear()
         menuList.addAll(newMenuList)
         notifyDataSetChanged()

@@ -47,7 +47,7 @@ class BannerAdapter(private val bannerList:ArrayList<Banner>)
         return bannerList.size
     }
 
-    fun updateBannerList(newBannerList: ArrayList<Banner>) {
+    fun updateBannerList(newBannerList: List<Banner>) {
         bannerList.clear()
         bannerList.addAll(newBannerList)
         notifyDataSetChanged()

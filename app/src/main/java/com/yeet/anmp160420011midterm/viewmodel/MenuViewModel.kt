@@ -4,12 +4,14 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.room.Room
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.yeet.anmp160420011midterm.model.CulinDatabase
 import com.yeet.anmp160420011midterm.model.Menu
 import com.yeet.anmp160420011midterm.util.buildDb
 import kotlinx.coroutines.CoroutineScope
@@ -28,6 +30,18 @@ class MenuViewModel(application: Application): AndroidViewModel(application), Co
     private var queue: RequestQueue? = null
 
     private var job = Job()
+
+    fun refresh() {
+        loadingLD.value = true
+        menuLoadErrorLD.value = false
+        launch {
+            val db = Room.databaseBuilder(
+                getApplication(),
+                CulinDatabase::class.java, "newculindb4").build()
+
+            menusLD.postValue(db.dao().selectNewestMenusAndResto())
+        }
+    }
 
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO

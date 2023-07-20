@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.room.Room
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
@@ -11,6 +12,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.yeet.anmp160420011midterm.model.Banner
+import com.yeet.anmp160420011midterm.model.CulinDatabase
 import com.yeet.anmp160420011midterm.model.Menu
 import com.yeet.anmp160420011midterm.util.buildDb
 import kotlinx.coroutines.CoroutineScope
@@ -20,7 +22,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class BannerViewModel(application: Application): AndroidViewModel(application), CoroutineScope {
-    val bannersLD = MutableLiveData<ArrayList<Banner>>()
+    val bannersLD = MutableLiveData<List<Banner>>()
     val bannerLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
     private val job = Job()
@@ -28,7 +30,22 @@ class BannerViewModel(application: Application): AndroidViewModel(application), 
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null
 
-    fun fetch() {
+    fun refresh() {
+        loadingLD.value = true
+        bannerLoadErrorLD.value = false
+        launch {
+            val db = Room.databaseBuilder(
+                getApplication(),
+                CulinDatabase::class.java, "newculindb4").build()
+
+            bannersLD.postValue(db.dao().selectAllBanner())
+        }
+    }
+
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.IO
+
+    /*fun fetch() {
         launch {
             val db = buildDb(getApplication())
 
@@ -56,7 +73,5 @@ class BannerViewModel(application: Application): AndroidViewModel(application), 
 
         stringRequest.tag = TAG
         queue?.add(stringRequest)*/
-    }
-    override val coroutineContext: CoroutineContext
-        get() = job + Dispatchers.IO
+    }*/
 }

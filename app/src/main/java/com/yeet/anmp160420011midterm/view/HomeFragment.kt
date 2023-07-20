@@ -32,11 +32,12 @@ class HomeFragment : Fragment() {
     private lateinit var bannerViewModel: BannerViewModel
     private val bannerAdapter = BannerAdapter(arrayListOf())
 
-    private lateinit var homeRestoViewModel: RestoViewModel
+    /*private lateinit var homeRestoViewModel: RestoViewModel
     private val homeRestoAdapterV = HomeRestoAdapterVertical(arrayListOf())
-    private val homeRestoAdapterH = HomeRestoAdapter(arrayListOf())
+    private val homeRestoAdapterH = HomeRestoAdapter(arrayListOf())*/
 
     private lateinit var menusViewModel: MenuViewModel
+    private val menuAdapter = MenuAdapter(arrayListOf())
 
     private var loadingBannerLD = MutableLiveData<Boolean>()
     private var loadingRestoLD = MutableLiveData<Boolean>()
@@ -56,33 +57,33 @@ class HomeFragment : Fragment() {
         txtBalance.text = Global.userBalance.toString().toCurrencyFormat()
 
         bannerViewModel = ViewModelProvider(this).get(BannerViewModel::class.java)
-        bannerViewModel.fetch()
+        bannerViewModel.refresh()
 
         val rvBanner: RecyclerView = view.findViewById(R.id.rvSponsored)
         rvBanner.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvBanner.adapter = bannerAdapter
 
-        homeRestoViewModel = ViewModelProvider(this).get(RestoViewModel::class.java)
+        /*homeRestoViewModel = ViewModelProvider(this).get(RestoViewModel::class.java)
         homeRestoViewModel.fetch_home_horizontal()
-        homeRestoViewModel.fetch_home_vertical()
+        homeRestoViewModel.fetch_home_vertical()*/
 
         menusViewModel = ViewModelProvider(this).get(MenuViewModel::class.java)
-        menusViewModel.fetchNewestMenus()
+        menusViewModel.refresh()
 
 
 
         val rvForYou: RecyclerView = view.findViewById(R.id.rvForYou)
         rvForYou.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        rvForYou.adapter = homeRestoAdapterH
+        rvForYou.adapter = menuAdapter
 
-        val rvForYouVertical: RecyclerView = view.findViewById(R.id.rvForYouVertical)
+        /*val rvForYouVertical: RecyclerView = view.findViewById(R.id.rvForYouVertical)
         val lm = object : LinearLayoutManager(context) {
             override fun canScrollVertically(): Boolean {
                 return false
             }
         }
         rvForYouVertical.layoutManager = lm
-        rvForYouVertical.adapter = homeRestoAdapterV
+        rvForYouVertical.adapter = homeRestoAdapterV*/
 
         val btnTopup: Button = view.findViewById(R.id.btnTopupHome)
         btnTopup.setOnClickListener {
@@ -111,13 +112,13 @@ class HomeFragment : Fragment() {
 //        homeRestoViewModel.restoLD.observe(viewLifecycleOwner, Observer {
 //            homeRestoAdapterV.updateRestoList(it)
 //        })
-        homeRestoViewModel.loadingLD.observe(viewLifecycleOwner, Observer {
+        menusViewModel.loadingLD.observe(viewLifecycleOwner, Observer {
             loadingRestoLD.value = it != true
         })
 
-        homeRestoViewModel.restoLD2.observe(viewLifecycleOwner, Observer {
+        /*homeRestoViewModel.restoLD2.observe(viewLifecycleOwner, Observer {
             homeRestoAdapterH.updateRestoList(it)
-        })
+        })*/
 
         loadingBannerLD.observe(viewLifecycleOwner, Observer {
             loadingRestoLD.observe(viewLifecycleOwner, Observer { i ->
@@ -137,7 +138,7 @@ class HomeFragment : Fragment() {
         })
 
         menusViewModel.menusLD.observe(viewLifecycleOwner, Observer {
-
+            menuAdapter.updateMenuList(it)
         })
     }
 }

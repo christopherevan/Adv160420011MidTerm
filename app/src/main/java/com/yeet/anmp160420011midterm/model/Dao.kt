@@ -17,6 +17,9 @@ interface Dao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(vararg user: User)
 
+    @Query("SELECT * FROM banner")
+    fun selectAllBanner(): List<Banner>
+
     @Query("SELECT * FROM resto")
     fun selectAllResto(): List<Resto>
 

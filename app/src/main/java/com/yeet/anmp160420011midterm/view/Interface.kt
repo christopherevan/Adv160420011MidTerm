@@ -13,3 +13,7 @@ interface ButtonDetailClickListener {
 interface ButtonBannerClickListener {
     fun onButtonBannerClick(v: View)
 }
+
+interface ButtonUserEditClickListener{
+    fun onButtonUserEditClick(v:View)
+}

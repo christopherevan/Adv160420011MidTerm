@@ -67,7 +67,7 @@ class RestoViewModel(application: Application): AndroidViewModel(application), C
     }
 
     fun fetch_saved() {
-        loadingLD.value = true
+        /*loadingLD.value = true
 
         queue = Volley.newRequestQueue(getApplication())
         val url = "http://wheli.site/adv/get_user_saved.php"
@@ -89,7 +89,7 @@ class RestoViewModel(application: Application): AndroidViewModel(application), C
         )
 
         stringRequest.tag = TAG
-        queue?.add(stringRequest)
+        queue?.add(stringRequest)*/
     }
 
     fun fetch_home_horizontal() {
