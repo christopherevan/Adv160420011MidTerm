@@ -26,6 +26,7 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
     val profileLD = MutableLiveData<User>()
     val oldPassword = MutableLiveData<String>()
     val newPassword = MutableLiveData<String>()
+    var displayName = MutableLiveData<String>()
 
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null

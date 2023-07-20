@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -49,6 +50,10 @@ class ProfileFragment : Fragment() {
             onPasswordResetClick()
         }
 
+        dataBinding.btnUpdate.setOnClickListener{
+            onUpdateProfileClick()
+        }
+
         val btnlogout = view.findViewById<FloatingActionButton>(R.id.btnLogout)
         btnlogout.setOnClickListener {
             onLogoutClick()
@@ -86,8 +91,12 @@ class ProfileFragment : Fragment() {
         observeReset(newPassword, id)
     }
 
-    fun onUpdateProfileClick(user: User) {
-        viewModel.updateName(user.displayName, user.uuid)
+    fun onUpdateProfileClick() {
+        val shared = activity?.getSharedPreferences(R.string.preference_file_key.toString(), Context.MODE_PRIVATE)
+        dataBinding.password = viewModel
+        val username = viewModel.displayName.value.toString()
+        val id = shared!!.getInt(R.string.user_id_key.toString(), 0)
+        viewModel.updateName(username, id)
 
         // Reload activity
         activity?.finish()
