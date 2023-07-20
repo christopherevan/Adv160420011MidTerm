@@ -8,22 +8,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.yeet.anmp160420011midterm.R
+import com.yeet.anmp160420011midterm.databinding.FragmentRegisterBinding
 import com.yeet.anmp160420011midterm.model.User
 import com.yeet.anmp160420011midterm.viewmodel.UserViewModel
 
-class RegisterFragment : Fragment() {
+class RegisterFragment : Fragment(), ButtonRegisterClickListener {
     private lateinit var viewModel: UserViewModel
+    private lateinit var dataBinding: FragmentRegisterBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false)
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container, false)
+        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        dataBinding.register = viewModel
+        dataBinding.lifecycleOwner = this
+
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,17 +39,15 @@ class RegisterFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-        val btnRegis = view.findViewById<Button>(R.id.btnRegisterRegisterFragment)
-        btnRegis.setOnClickListener {
-            onRegisterClick(view)
+        dataBinding.btnRegisterRegisterFragment.setOnClickListener {
+
         }
     }
 
-    private fun onRegisterClick(v: View) {
-        val user = User("ab", "", "", "", 350000)
-        viewModel.checkUsernameAvailable(user.username)
-        observe(user, v)
-    }
+//    private fun onRegisterClick(user: User, v: View) {
+//        viewModel.checkUsernameAvailable(user.username)
+//        observe(user, v)
+//    }
 
     private fun observe(user: User, v: View) {
         viewModel.userLD.observe(viewLifecycleOwner, Observer {
@@ -54,5 +60,10 @@ class RegisterFragment : Fragment() {
                 Toast.makeText(context, "Username is already taken. Please use another", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    override fun onButtonRegisterClick(v: View, user: User) {
+        viewModel.checkUsernameAvailable(user.username)
+        observe(user, v)
     }
 }

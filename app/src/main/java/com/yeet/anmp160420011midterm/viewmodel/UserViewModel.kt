@@ -27,6 +27,10 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
     val oldPassword = MutableLiveData<String>()
     val newPassword = MutableLiveData<String>()
     var displayName = MutableLiveData<String>()
+    val usernameRegister = MutableLiveData<String>()
+    val passwordRegister = MutableLiveData<String>()
+    val passwordRepeatRegister = MutableLiveData<String>()
+    val nameRegister = MutableLiveData<String>()
 
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null
@@ -67,10 +71,18 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
         }
     }
 
+    fun methodRegister(){
+        val balance = 350000
+        val user = User(usernameRegister.value.toString(), passwordRegister.value.toString(), passwordRepeatRegister.value.toString(), nameRegister.value.toString(), balance)
+        register(user)
+    }
+
     fun register(user: User) {
         launch {
-            val db = buildDb(getApplication())
-            db.dao().insertUser(user)
+//            if (!usernameValue.isNullOrEmpty() && !passwordValue.isNullOrEmpty() && !nameValue.isNullOrEmpty() && !passwordRepeatValue.isNullOrEmpty()){
+                val db = buildDb(getApplication())
+                db.dao().insertUser(user)
+//            }
         }
     }
 
