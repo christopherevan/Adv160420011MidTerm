@@ -1,13 +1,18 @@
 package com.yeet.anmp160420011midterm.util
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
+import androidx.databinding.InverseBindingAdapter
+import androidx.databinding.InverseBindingListener
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.google.android.material.internal.TextWatcherAdapter
+import com.google.android.material.textfield.TextInputEditText
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.yeet.anmp160420011midterm.R
@@ -63,4 +68,26 @@ fun String.toCurrencyFormat(): String {
 @BindingAdapter("android:imageUrl", "android:progressBar")
 fun loadPhotoURL(view: ImageView, url: String, pb: ProgressBar) {
     view.loadImage(url, pb)
+}
+
+@BindingAdapter("app:text")
+fun setText(view: TextInputEditText, value: String?) {
+    if (view.text.toString() != value) {
+        view.setText(value)
+    }
+}
+
+@InverseBindingAdapter(attribute = "app:text")
+fun getText(view: TextInputEditText): String {
+    return view.text.toString()
+}
+
+@BindingAdapter("app:textAttrChanged")
+fun setListener(view: TextInputEditText, listener: InverseBindingListener?) {
+    view.addTextChangedListener(@SuppressLint("RestrictedApi")
+    object : TextWatcherAdapter() {
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            listener?.onChange()
+        }
+    })
 }
