@@ -38,7 +38,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun onRegisterClick(v: View) {
-        val user = User("ab", "", "", "")
+        val user = User("ab", "", "", "", 350000)
         viewModel.checkUsernameAvailable(user.username)
         observe(user, v)
     }

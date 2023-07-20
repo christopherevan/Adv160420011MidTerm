@@ -35,9 +35,10 @@ class MenuViewModel(application: Application): AndroidViewModel(application), Co
         loadingLD.value = true
         menuLoadErrorLD.value = false
         launch {
-            val db = Room.databaseBuilder(
-                getApplication(),
-                CulinDatabase::class.java, "newculindb4").build()
+//            val db = Room.databaseBuilder(
+//                getApplication(),
+//                CulinDatabase::class.java, "newculindb4").build()
+            val db = buildDb(getApplication())
 
             menusLD.postValue(db.dao().selectNewestMenusAndResto())
         }

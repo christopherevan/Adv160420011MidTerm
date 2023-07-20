@@ -34,9 +34,10 @@ class BannerViewModel(application: Application): AndroidViewModel(application), 
         loadingLD.value = true
         bannerLoadErrorLD.value = false
         launch {
-            val db = Room.databaseBuilder(
-                getApplication(),
-                CulinDatabase::class.java, "newculindb4").build()
+//            val db = Room.databaseBuilder(
+//                getApplication(),
+//                CulinDatabase::class.java, "newculindb5").build()
+            val db = buildDb(getApplication())
 
             bannersLD.postValue(db.dao().selectAllBanner())
         }

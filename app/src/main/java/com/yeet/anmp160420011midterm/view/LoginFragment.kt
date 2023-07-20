@@ -31,7 +31,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-        val user = User("ab", "", "", "")
+        val user = User("ab", "", "", "", 0)
         val btnLogin = view.findViewById<Button>(R.id.btnLoginLoginFragment)
         btnLogin.setOnClickListener {
             onLoginClick(user.username, user.pass)

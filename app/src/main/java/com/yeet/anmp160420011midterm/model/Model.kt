@@ -124,7 +124,9 @@ data class User(
     @ColumnInfo(name = "display_name")
     val displayName: String,
     @ColumnInfo(name = "profile_url")
-    val profileUrl: String
+    val profileUrl: String,
+    @ColumnInfo(name = "balance")
+    val balance: Int
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0
