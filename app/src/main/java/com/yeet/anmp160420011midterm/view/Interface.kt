@@ -9,3 +9,7 @@ interface FragmentHomeLayoutInterface {
 interface ButtonDetailClickListener {
     fun onButtonDetailClick(v: View)
 }
+
+interface ButtonBannerClickListener {
+    fun onButtonBannerClick(v: View)
+}
