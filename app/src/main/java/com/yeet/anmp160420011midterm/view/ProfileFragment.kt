@@ -35,9 +35,19 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val username = "johndoe369"
+//        val username = "johndoe369"
 
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+
+        val share = context?.getSharedPreferences(R.string.preference_file_key.toString(), Context.MODE_PRIVATE)
+        val id = share!!.getInt(R.string.user_id_key.toString(), 0)
+        viewModel.getUser(id)
+
+        dataBinding.password = viewModel
+
+        dataBinding.btnReset.setOnClickListener{
+            onPasswordResetClick()
+        }
 
         val btnlogout = view.findViewById<FloatingActionButton>(R.id.btnLogout)
         btnlogout.setOnClickListener {
@@ -45,7 +55,9 @@ class ProfileFragment : Fragment() {
         }
     //viewModel.fetch(username)
         
-//        observe()
+        observe()
+
+
     }
 
     fun onLogoutClick() {
@@ -64,13 +76,14 @@ class ProfileFragment : Fragment() {
         activity?.finish()
     }
 
-    fun onPasswordResetClick(password: String) {
+    fun onPasswordResetClick() {
         val shared = activity?.getSharedPreferences(R.string.preference_file_key.toString(), Context.MODE_PRIVATE)
+        val newPassword = viewModel.newPassword.value.toString()
+        val oldPassword = viewModel.oldPassword.value.toString()
         val username = shared?.getString(R.string.username_key.toString(), "")
-        val id = shared?.getInt(R.string.user_id_key.toString(), 0)
-        viewModel.login(username!!, password)
-
-        observe(password)
+        val id = shared!!.getInt(R.string.user_id_key.toString(), 0)
+        viewModel.login(username!!, oldPassword)
+        observeReset(newPassword, id)
     }
 
     fun onUpdateProfileClick(user: User) {
@@ -81,8 +94,33 @@ class ProfileFragment : Fragment() {
         startActivity(activity?.intent!!)
     }
 
-    fun observe(password: String) {
+    fun observeReset(newPass: String, id: Int) {
         viewModel.userLD.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                viewModel.resetPassword(newPass, id)
+                Toast.makeText(context, "Reset Password Sucsess", Toast.LENGTH_SHORT).show()
+                onLogoutClick()
+//                val sharedPref = activity?.getSharedPreferences(R.string.preference_file_key.toString(), Context.MODE_PRIVATE)
+//                if (sharedPref != null) {
+//                    with (sharedPref.edit()) {
+//                        putString(R.string.username_key.toString(), it.username)
+//                        putInt(R.string.user_id_key.toString(), it.uuid)
+//                        apply()
+//                    }
+//                }
+//
+//                Toast.makeText(context, "Welcome", Toast.LENGTH_SHORT).show()
+//                val intent = Intent(context, MainActivity::class.java)
+//                startActivity(intent)
+//                activity?.finish()
+            } else {
+                Toast.makeText(context, "Reset Password Fail", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    fun observe() {
+        viewModel.profileLD.observe(viewLifecycleOwner, Observer {
             dataBinding.profile = it
             /*if (it != null) {
                 viewModel.resetPassword(password, id)

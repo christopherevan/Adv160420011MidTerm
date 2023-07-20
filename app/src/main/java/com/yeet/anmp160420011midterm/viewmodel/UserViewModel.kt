@@ -23,6 +23,9 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
     val userLD = MutableLiveData<User?>()
     val userLoadErrLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
+    val profileLD = MutableLiveData<User>()
+    val oldPassword = MutableLiveData<String>()
+    val newPassword = MutableLiveData<String>()
 
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null
@@ -89,6 +92,14 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
         launch {
             val db = buildDb(getApplication())
             db.dao().updatePassword(newPass, id)
+        }
+    }
+
+    fun getUser(id: Int){
+        launch {
+            val db = buildDb(getApplication())
+            val user = db.dao().getUser(id)
+            profileLD.postValue(user)
         }
     }
 }

@@ -45,4 +45,7 @@ interface Dao {
 
     @Query("SELECT * FROM `order` WHERE user_id=:user_id")
     fun getOrders(user_id: Int): List<Order>
+
+    @Query("SELECT * FROM `user` WHERE uuid=:user_id")
+    fun getUser(user_id: Int): User
 }

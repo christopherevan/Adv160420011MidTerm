@@ -10,6 +10,9 @@
         <variable
             name="updateListener"
             type="com.yeet.anmp160420011midterm.view.ButtonUserEditClickListener"/>
+        <variable
+            name="password"
+            type="com.yeet.anmp160420011midterm.viewmodel.UserViewModel" />
     </data>
 
     <FrameLayout android:layout_width="match_parent"
@@ -43,7 +46,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:src="@tools:sample/avatars" />
+                        tools:src="@tools:sample/avatars"/>
 
                     <ProgressBar
                         android:id="@+id/progressBar"
@@ -65,11 +68,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/nunito_bold"
-                android:text="TextView"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardvieww" />
+                app:layout_constraintTop_toBottomOf="@+id/cardvieww"
+                android:text="@{profile.username}"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout7"
@@ -87,7 +90,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
-                    android:hint="Display Name" />
+                    android:hint="Display Name"
+                    android:text="@{profile.displayName}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -106,7 +110,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnReset"
                 style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -130,7 +134,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Old Password" />
+                    android:hint="Old Password"
+                    android:text="@={password.oldPassword}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -156,7 +161,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="New Password" />
+                    android:hint="New Password"
+                    android:text="@={password.newPassword}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -170,7 +176,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Repeat New Password" />
+                    android:hint="Repeat New Password"
+                    android:text="@={password.newPassword}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton

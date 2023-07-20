@@ -46,7 +46,6 @@ class LoginFragment : Fragment() {
             val username = viewModelLogin.username.value.toString()
             val password = viewModelLogin.password.value.toString()
             onLoginClick(username, password)
-            Toast.makeText(context, "$username", Toast.LENGTH_SHORT).show()
         }
     }
 
