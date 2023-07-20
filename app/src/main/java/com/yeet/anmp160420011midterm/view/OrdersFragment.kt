@@ -1,5 +1,6 @@
 package com.yeet.anmp160420011midterm.view
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yeet.anmp160420011midterm.R
+import com.yeet.anmp160420011midterm.model.Order
 import com.yeet.anmp160420011midterm.viewmodel.OrderViewModel
 
 class OrdersFragment : Fragment() {
@@ -26,8 +28,11 @@ class OrdersFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val shared = context?.getSharedPreferences(R.string.preference_file_key.toString(), Context.MODE_PRIVATE)
+        val id = shared!!.getInt(R.string.user_id_key.toString(), 0)
+
         viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
-        viewModel.fetch()
+        viewModel.fetch(id)
 
         val rv: RecyclerView = view.findViewById(R.id.rvOrders)
         rv.layoutManager = LinearLayoutManager(context)
@@ -36,10 +41,10 @@ class OrdersFragment : Fragment() {
     }
 
     private fun observe() {
-        val rv: RecyclerView = requireView().findViewById(R.id.rvOrders)
+//        val rv: RecyclerView = requireView().findViewById(R.id.rvOrders)
 
         viewModel.ordersLD.observe(viewLifecycleOwner, Observer {
-            orderListAdapter.updateOrders(it)
+            orderListAdapter.updateOrders(it as ArrayList<Order>)
         })
 
         viewModel.loadingLD.observe(viewLifecycleOwner, Observer {

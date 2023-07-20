@@ -20,11 +20,10 @@ data class Order(
     val date: String,
     @ColumnInfo(name = "status")
     val status: String,
-    val productsAmount: Int,
     @ColumnInfo(name = "address")
     val address: String,
-    @ColumnInfo(name = "menus_purchased")
-    val menusPurchased: String
+    @ColumnInfo(name = "user_id")
+    val userId: String,
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0

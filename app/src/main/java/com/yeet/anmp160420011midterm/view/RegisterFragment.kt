@@ -47,7 +47,7 @@ class RegisterFragment : Fragment() {
         viewModel.userLD.observe(viewLifecycleOwner, Observer {
             if (it == null) {
                 viewModel.register(user)
-
+                Toast.makeText(context, "Register successful. Please log in", Toast.LENGTH_SHORT).show()
                 val action = RegisterFragmentDirections.actionLoginAfterRegister()
                 Navigation.findNavController(v).navigate(action)
             } else {
