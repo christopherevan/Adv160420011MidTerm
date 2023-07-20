@@ -15,7 +15,7 @@ import com.yeet.anmp160420011midterm.model.CulinDatabase
 import java.text.NumberFormat
 import java.util.*
 
-val DB_NAME = "newculindb2"
+val DB_NAME = "newculindb3"
 fun buildDb(context: Context): CulinDatabase {
     val db = Room.databaseBuilder(context, CulinDatabase::class.java, DB_NAME)
         .addMigrations(MIGRATION_1_2, MIGRATION_2_3)

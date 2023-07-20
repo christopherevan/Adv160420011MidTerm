@@ -20,6 +20,11 @@ data class Order(
     val date: String,
     @ColumnInfo(name = "status")
     val status: String,
+    val productsAmount: Int,
+    @ColumnInfo(name = "address")
+    val address: String,
+    @ColumnInfo(name = "menus_purchased")
+    val menusPurchased: String
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0
@@ -55,7 +60,9 @@ data class Banner(
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "sponsor")
-    val sponsor: String
+    val sponsor: String,
+    @ColumnInfo(name = "restoId")
+    val restoId: Int
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0
