@@ -3,6 +3,7 @@ package com.yeet.anmp160420011midterm.model
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 
@@ -97,11 +98,12 @@ data class Menu(
     val imgUrl: String,
     @ColumnInfo(name = "desc")
     val desc: String,
+    @ColumnInfo(name = "resto_id")
+    val restoId: Int,
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0
 }
-
 @Entity
 data class Cart(
     @ColumnInfo(name = "name")

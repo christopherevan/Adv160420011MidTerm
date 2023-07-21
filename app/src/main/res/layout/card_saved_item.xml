@@ -1,103 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView5x"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:cardCornerRadius="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
+        <variable
+            name="resto"
+            type="com.yeet.anmp160420011midterm.model.Resto" />
+        <variable
+            name="listener"
+            type="com.yeet.anmp160420011midterm.view.ButtonDetailClickListener" />
+    </data>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imgRestoSaved"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView5x"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ProgressBar
-                android:id="@+id/progressBarSaved"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/imgRestoSaved"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imgRestoSaved" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/imgRestoSaved"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/txtLocationSaved"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/nunito_semibold"
-        android:text="Near Ubaya"
-        android:textSize="10sp"
-        app:layout_constraintStart_toEndOf="@+id/cardView5x"
-        app:layout_constraintTop_toTopOf="@+id/cardView5x" />
+                <ProgressBar
+                    android:id="@+id/progressBarSaved"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgRestoSaved"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imgRestoSaved" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/txtRestoNameSaved"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Kopi Titik Koma Tenggilis"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/txtLocationSaved"
-        app:layout_constraintTop_toBottomOf="@+id/txtLocationSaved" />
+        </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/txtReveiwsSaved"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:fontFamily="@font/montserrat"
-        android:text="4 - (16 reviews)"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView14x"
-        app:layout_constraintTop_toBottomOf="@+id/txtRestoNameSaved" />
+        <TextView
+            android:id="@+id/txtLocationSaved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="@{resto.relativeLocation}"
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@+id/cardView5x"
+            app:layout_constraintTop_toTopOf="@+id/cardView5x" />
 
-    <Button
-        android:id="@+id/btnDetailsRestoSaved"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:minWidth="44dip"
-        android:minHeight="32dip"
-        android:text="Details"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView5x"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/txtRestoNameSaved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@{resto.name}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/txtLocationSaved"
+            app:layout_constraintTop_toBottomOf="@+id/txtLocationSaved" />
 
-    <ImageView
-        android:id="@+id/imageView14x"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/txtReveiwsSaved"
-        app:layout_constraintStart_toStartOf="@+id/txtRestoNameSaved"
-        app:layout_constraintTop_toTopOf="@+id/txtReveiwsSaved"
-        app:srcCompat="@drawable/baseline_star_16"
-        tools:srcCompat="@drawable/baseline_star_16" />
+        <TextView
+            android:id="@+id/txtReveiwsSaved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/montserrat"
+            android:text='@{String.valueOf(resto.rating) + " - (" + String.valueOf(resto.countReviews) + " reviews)"}'
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView14x"
+            app:layout_constraintTop_toBottomOf="@+id/txtRestoNameSaved" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btnDetailsRestoSaved"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:minWidth="44dip"
+            android:minHeight="32dip"
+            android:text="Details"
+            android:tag="@{resto.uuid}"
+            android:onClick="@{listener::onButtonDetailClick}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView5x"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView14x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/txtReveiwsSaved"
+            app:layout_constraintStart_toStartOf="@+id/txtRestoNameSaved"
+            app:layout_constraintTop_toTopOf="@+id/txtReveiwsSaved"
+            app:srcCompat="@drawable/baseline_star_16"
+            tools:srcCompat="@drawable/baseline_star_16" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
