@@ -124,9 +124,9 @@ data class User(
     @ColumnInfo(name = "display_name")
     val displayName: String,
     @ColumnInfo(name = "profile_url")
-    val profileUrl: String,
+    val profileUrl: String = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png",
     @ColumnInfo(name = "balance")
-    var balance: Int
+    var balance: Int = 350000
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0

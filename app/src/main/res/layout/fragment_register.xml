@@ -115,8 +115,8 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:onClick="@{() -> register.methodRegister()}"/>
+                app:layout_constraintStart_toStartOf="parent"/>
+<!--                android:onClick="@{() -> register.methodRegister()}"/>-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
