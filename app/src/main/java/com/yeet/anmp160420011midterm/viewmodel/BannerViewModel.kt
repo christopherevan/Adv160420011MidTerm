@@ -27,8 +27,8 @@ class BannerViewModel(application: Application): AndroidViewModel(application), 
     val loadingLD = MutableLiveData<Boolean>()
     private val job = Job()
 
-    val TAG = "volleyTag"
-    private var queue: RequestQueue? = null
+    //val TAG = "volleyTag"
+    //private var queue: RequestQueue? = null
 
     fun refresh() {
         loadingLD.value = true

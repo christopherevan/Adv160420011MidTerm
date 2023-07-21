@@ -11,24 +11,26 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.yeet.anmp160420011midterm.R
+import com.yeet.anmp160420011midterm.databinding.MenuItemBinding
 import com.yeet.anmp160420011midterm.model.Menu
 import com.yeet.anmp160420011midterm.util.loadImage
 import com.yeet.anmp160420011midterm.util.toCurrencyFormat
 
-class MenuAdapter(private val menuList:ArrayList<Menu>)
+class MenuAdapter(val menuList:ArrayList<Menu>)
     : RecyclerView.Adapter<MenuAdapter.MenuViewHolder>()
 {
-    class MenuViewHolder(var view: View) : RecyclerView.ViewHolder(view)
+    class MenuViewHolder(var view: MenuItemBinding) : RecyclerView.ViewHolder(view.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.menu_item, parent, false)
+        val view = MenuItemBinding.inflate(inflater, parent, false)
         return MenuViewHolder(view)
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
-        val txtMenuName: TextView = holder.view.findViewById(R.id.txtMenuName)
+        holder.view.menu = menuList[position]
+        /*val txtMenuName: TextView = holder.view.findViewById(R.id.txtMenuName)
         val txtMenuPrice: TextView = holder.view.findViewById(R.id.txtMenuPrice)
         val btnCart: Button = holder.view.findViewById(R.id.btnCartMenu)
         val img: ImageView = holder.view.findViewById(R.id.imgMenu)
@@ -42,7 +44,7 @@ class MenuAdapter(private val menuList:ArrayList<Menu>)
 //            Navigation.findNavController(it).navigate(action)
         }
 
-        img.loadImage(menuList[position].imgUrl, progressBar)
+        img.loadImage(menuList[position].imgUrl, progressBar)*/
     }
 
     override fun getItemCount(): Int {

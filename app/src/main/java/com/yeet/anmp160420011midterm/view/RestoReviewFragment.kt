@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yeet.anmp160420011midterm.R
+import com.yeet.anmp160420011midterm.databinding.FragmentProfileBinding
 import com.yeet.anmp160420011midterm.viewmodel.ReviewViewModel
 
 class RestoReviewFragment : Fragment() {
@@ -30,7 +31,7 @@ class RestoReviewFragment : Fragment() {
             val id = RestoReviewFragmentArgs.fromBundle(requireArguments()).restoId
 
             viewModel = ViewModelProvider(this).get(ReviewViewModel::class.java)
-            viewModel.fetch(id)
+            viewModel.refresh(id)
 
             val rv: RecyclerView = view.findViewById(R.id.rvReviews)
             rv.layoutManager = LinearLayoutManager(context)

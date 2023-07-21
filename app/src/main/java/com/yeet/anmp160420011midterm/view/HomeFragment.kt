@@ -88,9 +88,6 @@ class HomeFragment : Fragment() {
         val btnTopup: Button = view.findViewById(R.id.btnTopupHome)
         btnTopup.setOnClickListener {
             Toast.makeText(context, "Feature not yet implemented", Toast.LENGTH_SHORT).show()
-
-
-
         }
         
         observe()

@@ -64,6 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:tag="@{banner.uuid}"
             android:onClick="@{buttonListener::onButtonBannerClick}"
             android:text="Show More"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"

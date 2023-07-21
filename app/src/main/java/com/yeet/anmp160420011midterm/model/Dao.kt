@@ -29,8 +29,8 @@ interface Dao {
     @Query("SELECT * FROM user WHERE username=:username AND pass=:pass")
     fun login(username:String, pass:String): User
 
-    @Query("SELECT * FROM review WHERE uuid=:id")
-    fun selectReview(id:Int): Review
+    @Query("SELECT * FROM review WHERE uuid=:uuid")
+    fun selectReview(uuid:Int): List<Review>
     @Query("SELECT * FROM user WHERE username=:username")
     fun checkUsernameAvailable(username: String): User
 
