@@ -16,10 +16,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import com.yeet.anmp160420011midterm.R
-import com.yeet.anmp160420011midterm.databinding.FragmentProfileBindingImpl
 import com.yeet.anmp160420011midterm.databinding.FragmentProfileBinding
 import com.yeet.anmp160420011midterm.model.User
 import com.yeet.anmp160420011midterm.util.loadImage
+import com.yeet.anmp160420011midterm.util.loadPhotoURL
 import com.yeet.anmp160420011midterm.viewmodel.UserViewModel
 
 class ProfileFragment : Fragment() {
@@ -46,6 +46,7 @@ class ProfileFragment : Fragment() {
 
         dataBinding.password = viewModel
 
+
         dataBinding.btnReset.setOnClickListener{
             onPasswordResetClick()
         }
@@ -59,7 +60,7 @@ class ProfileFragment : Fragment() {
             onLogoutClick()
         }
     //viewModel.fetch(username)
-        
+
         observe()
 
 
