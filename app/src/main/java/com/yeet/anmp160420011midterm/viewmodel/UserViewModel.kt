@@ -80,8 +80,8 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
     fun register(user: User) {
         launch {
 //            if (!usernameValue.isNullOrEmpty() && !passwordValue.isNullOrEmpty() && !nameValue.isNullOrEmpty() && !passwordRepeatValue.isNullOrEmpty()){
-                val db = buildDb(getApplication())
-                db.dao().insertUser(user)
+            val db = buildDb(getApplication())
+            db.dao().insertUser(user)
 //            }
         }
     }

@@ -59,7 +59,7 @@ class ProfileFragment : Fragment() {
         btnlogout.setOnClickListener {
             onLogoutClick()
         }
-    //viewModel.fetch(username)
+        //viewModel.fetch(username)
 
         observe()
 
