@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="resto"
             type="com.yeet.anmp160420011midterm.model.Resto" />
+        <variable
+            name="listener"
+            type="com.yeet.anmp160420011midterm.view.ButtonDetailClickListener" />
+        <variable
+            name="cartListener"
+            type="com.yeet.anmp160420011midterm.view.ButtonCartClickListener" />
     </data>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.RestoDetailFragment">
@@ -29,6 +35,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:clickable="true"
+                android:onClick="@{(view)->cartListener.onFabCartClick(view, resto)}"
                 android:src="@drawable/baseline_shopping_cart_24"
                 app:backgroundTint="@android:color/holo_orange_dark"
                 app:fabSize="mini"
@@ -43,8 +50,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:imageUrl="@{resto.imageUrl}"
-                android:progressBar="@{progressRestoDetail}"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <ProgressBar
@@ -200,6 +205,8 @@
                                 android:minWidth="44dip"
                                 android:minHeight="32dip"
                                 android:text="See reviews"
+                                android:onClick="@{listener::onButtonDetailClick}"
+                                android:tag="@{resto.uuid}"
                                 android:textSize="12sp"
                                 app:layout_constraintBottom_toBottomOf="@+id/txtRatingRestoDetail"
                                 app:layout_constraintEnd_toEndOf="parent"

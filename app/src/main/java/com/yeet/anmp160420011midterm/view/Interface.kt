@@ -1,6 +1,7 @@
 package com.yeet.anmp160420011midterm.view
 
 import android.view.View
+import com.yeet.anmp160420011midterm.model.Resto
 import com.yeet.anmp160420011midterm.model.User
 
 interface FragmentHomeLayoutInterface {
@@ -21,4 +22,8 @@ interface ButtonUserEditClickListener{
 
 interface ButtonRegisterClickListener{
     fun onButtonRegisterClick(v:View, obj:User)
+}
+
+interface ButtonCartClickListener{
+    fun onFabCartClick(v: View, resto: Resto)
 }
