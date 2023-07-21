@@ -24,7 +24,7 @@ import com.yeet.anmp160420011midterm.viewmodel.RestoDetailViewModel
 
 class RestoDetailFragment : Fragment() {
     private lateinit var restoDetailViewModel: RestoDetailViewModel
-    private val menuBestSellerHorizontalAdapter = MenuBestSellerHorizontalAdapter(arrayListOf())
+    //private val menuBestSellerHorizontalAdapter = MenuBestSellerHorizontalAdapter(arrayListOf())
     private val menuAdapter = MenuAdapter(arrayListOf())
 
     override fun onCreateView(
@@ -41,11 +41,11 @@ class RestoDetailFragment : Fragment() {
             restoDetailViewModel = ViewModelProvider(this).get(RestoDetailViewModel::class.java)
             restoDetailViewModel.fetchResto(id)
             restoDetailViewModel.fetchMenu(id)
-            restoDetailViewModel.fetchMenuBestSeller(id)
+            //restoDetailViewModel.fetchMenuBestSeller(id)
 
-            val rvBestSeller: RecyclerView = view.findViewById(R.id.rvBestSellersRestoDetail)
-            rvBestSeller.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            rvBestSeller.adapter = menuBestSellerHorizontalAdapter
+            //val rvBestSeller: RecyclerView = view.findViewById(R.id.rvBestSellersRestoDetail)
+            //rvBestSeller.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            //rvBestSeller.adapter = menuBestSellerHorizontalAdapter
 
             val rvMenu: RecyclerView = view.findViewById(R.id.rvMenuRestoDetail)
             val lm = object : LinearLayoutManager(context) {
@@ -63,7 +63,7 @@ class RestoDetailFragment : Fragment() {
 
                 restoDetailViewModel.fetchResto(id)
                 restoDetailViewModel.fetchMenu(id)
-                restoDetailViewModel.fetchMenuBestSeller(id)
+                //restoDetailViewModel.fetchMenuBestSeller(id)
 
                 refreshLayout.isRefreshing = false
             }
@@ -108,8 +108,8 @@ class RestoDetailFragment : Fragment() {
             menuAdapter.updateMenuList(it)
         })
 
-        restoDetailViewModel.menuBestSellerLD.observe(viewLifecycleOwner, Observer {
+        /*restoDetailViewModel.menuBestSellerLD.observe(viewLifecycleOwner, Observer {
             menuBestSellerHorizontalAdapter.updateMenuList(it)
-        })
+        })*/
     }
 }

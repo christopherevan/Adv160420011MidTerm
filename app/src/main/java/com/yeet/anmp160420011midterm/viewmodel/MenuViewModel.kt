@@ -26,8 +26,8 @@ class MenuViewModel(application: Application): AndroidViewModel(application), Co
     val menuLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
 
-    val TAG = "volleyTag"
-    private var queue: RequestQueue? = null
+    //val TAG = "volleyTag"
+    //private var queue: RequestQueue? = null
 
     private var job = Job()
 
@@ -44,10 +44,23 @@ class MenuViewModel(application: Application): AndroidViewModel(application), Co
         }
     }
 
+    fun fetch(id:Int) {
+        loadingLD.value = true
+        menuLoadErrorLD.value = false
+        launch {
+//            val db = Room.databaseBuilder(
+//                getApplication(),
+//                CulinDatabase::class.java, "newculindb4").build()
+            val db = buildDb(getApplication())
+
+            menusLD.postValue(db.dao().getDetailMenu(id))
+        }
+    }
+
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 
-    fun fetch(id: Int) {
+    /*fun fetch(id: Int) {
 //        queue = Volley.newRequestQueue(getApplication())
 //        val url = "http://wheli.site/adv/get_menu_detail.php?menu_id=$id"
 //
@@ -68,7 +81,7 @@ class MenuViewModel(application: Application): AndroidViewModel(application), Co
 //
 //        stringRequest.tag = TAG
 //        queue?.add(stringRequest)
-    }
+    }*/
 
     fun fetchNewestMenus() {
 //        launch {

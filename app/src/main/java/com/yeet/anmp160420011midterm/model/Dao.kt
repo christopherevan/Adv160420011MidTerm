@@ -43,6 +43,12 @@ interface Dao {
     @Query("SELECT * FROM menu ORDER BY uuid DESC LIMIT 10")
     fun selectNewestMenusAndResto(): List<Menu>
 
+    @Query("SELECT * FROM menu WHERE uuid=:id")
+    fun getDetailMenu(id:Int): List<Menu>
+
+    @Query("SELECT * FROM menu WHERE resto_id=:resto_id")
+    fun getMenus(resto_id:Int): List<Menu>
+
     @Query("SELECT * FROM `order` WHERE user_id=:user_id")
     fun getOrders(user_id: Int): List<Order>
 
